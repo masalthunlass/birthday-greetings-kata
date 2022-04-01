@@ -40,11 +40,17 @@
             <version>1.12.3</version>
             <scope>test</scope>
         </dependency>
+        <!-- for cvs reader -->
+        <dependency>
+            <groupId>com.github.doyaaaaaken</groupId>
+            <artifactId>kotlin-csv-jvm</artifactId>
+            <version>1.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
 
         <plugins>
             <plugin>
