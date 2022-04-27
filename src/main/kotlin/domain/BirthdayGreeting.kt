@@ -8,7 +8,7 @@ class BirthdayGreeting(private val friendRepository: FriendRepository, private v
     fun getTodayBirthdayFriends(friends: Set<Friend>, today : LocalDate): Set<Friend> = friends.filter { it.birthday.dayOfMonth == today.dayOfMonth && it.birthday.month == today.month }.toSet()
 
     fun getBornFeb29BirthdayFriends(friends: Set<Friend>, today : LocalDate): Set<Friend>  {
-        return if (today.isLeapYear || today.month !== Month.FEBRUARY || today.dayOfMonth !== 28)  {
+        return if (today.isLeapYear || today.month != Month.FEBRUARY || today.dayOfMonth != 28)  {
             emptySet()
         } else {
             friends.filter { it.birthday.dayOfMonth == 29 && it.birthday.month == Month.FEBRUARY }.toSet()

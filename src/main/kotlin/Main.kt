@@ -1,16 +1,28 @@
 import domain.BirthdayGreeting
 import domain.Clock
+import infrastructure.BirthdayGreetingByMail
 import infrastructure.BirthdayGreetingOnConsole
 import infrastructure.FriendsFromFile
+import infrastructure.MailService
 import java.time.LocalDate
 
 fun main() {
 
+    val birthdayGreeting = fromFileToLocalMail()
+
+    birthdayGreeting.send()
+}
+
+private fun fromFileToConsole(): BirthdayGreetingOnConsole {
     val friendRepository = FriendsFromFile("src/main/resources/friends.csv")
     val birthdayGreetingPort = BirthdayGreeting(friendRepository, clock = FakeClock())
-    val birthdayGreetingOnConsole = BirthdayGreetingOnConsole(birthdayGreetingPort)
+    return BirthdayGreetingOnConsole(birthdayGreetingPort)
+}
 
-    birthdayGreetingOnConsole.send();
+private fun fromFileToLocalMail(): BirthdayGreetingByMail {
+    val friendRepository = FriendsFromFile("src/main/resources/friends.csv")
+    val birthdayGreetingPort = BirthdayGreeting(friendRepository, clock = FakeClock())
+    return BirthdayGreetingByMail(birthdayGreetingPort, MailService())
 }
 
 class FakeClock : Clock() {
