@@ -18,7 +18,7 @@ class BirthdayGreetingIntTest {
     private lateinit var birthdayGreeting: BirthdayMessageProvider
 
 
-    private var clock = mockk<Clock>()
+    private var clock = mockk<SystemClock>()
 
     @BeforeEach
     internal fun setUp() {

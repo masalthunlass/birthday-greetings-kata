@@ -1,7 +1,7 @@
 package infrastructure
 
 import domain.BirthdayGreeting
-import domain.Clock
+import domain.SystemClock
 import domain.Friend
 import domain.FriendRepository
 import io.mockk.*
@@ -13,7 +13,7 @@ import java.time.LocalDate
 class BirthdayGreetingByMailTest {
 
     private val friendRepository = mockk<FriendRepository>()
-    private val clock = mockk<Clock>()
+    private val clock = mockk<SystemClock>()
     private val birthdayGreetingPort = BirthdayGreeting(friendRepository, clock = clock)
     private val mailService = mockk<MailService>(relaxUnitFun = true)
     private val birthdayGreetingByMail: BirthdayGreetingByMail =
